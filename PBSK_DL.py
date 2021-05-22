@@ -1,3 +1,21 @@
+"""
+    PBSK_DL by NotSoCheezyTech
+    Copyright (C) 2021  Cassandra Leo
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+"""
+
 import urllib.request
 import json
 import os
@@ -55,6 +73,7 @@ def jdownload(jcontent, collection):
 
 ###### DOWNLOAD JSON
 
+print("PBSK_DL  Copyright (C) 2021  NotSoCheezyTech\nThis program comes with ABSOLUTELY NO WARRANTY; for details see license.\nThis is free software, and you are welcome to redistribute it\nunder certain conditions; see license for details.")
 print("Please type the name of the show in lowercase, replacing spaces with '-' and removing punctuation:")
 print("Examples: 'cyberchase', 'lets-go-luna'")
 show_name = input()
