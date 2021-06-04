@@ -33,7 +33,7 @@ def jdownload(jcontent, collection):
         print("Downloading...")
         show_name = item['program']['title']
         air_date = item['air_date'][0:10]
-        ep_title = item['title'].replace('/', '; ')
+        ep_title = item['title'].replace('/', '; ').replace(': ', '_').replace('?', '').replace('\\', '').replace('*', '').replace('"', '').replace('<', '').replace('>', '').replace('|', '')
         print(show_name)
         print(air_date)
         print(ep_title)
@@ -44,7 +44,7 @@ def jdownload(jcontent, collection):
         if not os.path.isdir(os.path.join(show_name, collection)):
             os.makedirs(os.path.join(show_name, collection))
         
-        str_dir = os.path.join(show_name, collection, f"{show_name} {air_date} - {ep_title}")
+        str_dir = os.path.join(show_name, collection, f"{air_date} - {ep_title}")
         
         print("from:")
         try:
@@ -58,15 +58,15 @@ def jdownload(jcontent, collection):
         try:
             good_cc = False
             for cap in item['closedCaptions']:
-                if cap['format'] == 'SRT':
+                if cap['format'] == 'WebVTT':
                     cc = cap['URI']
                     good_cc = True
                     break
             if not good_cc: raise LookupError
             print(cc)
-            urllib.request.urlretrieve(cc, f"{str_dir}.srt")
+            urllib.request.urlretrieve(cc, f"{str_dir}.vtt")
         except:
-            print("No valid srt!")
+            print("No valid vtt!")
             raise
         
         print('\n')
@@ -83,7 +83,7 @@ jcontent = json.loads(contents)
 
 ###### DOWNLOAD VIDEOS
 
-do_clips = yes_no("Also download clips?")
+if yes_no("Also download clips?"):
+    jdownload(jcontent, 'clips')
 
 jdownload(jcontent, 'episodes')
-if do_clips: jdownload(jcontent, 'clips')
